@@ -1,5 +1,6 @@
 package org.acme.controller;
 
+import io.swagger.annotations.ApiOperation;
 import org.acme.dto.CadastrarProdutoDTO;
 import org.acme.entity.Produto;
 import org.acme.repository.ProdutoRepository;
@@ -10,6 +11,8 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoResource {
@@ -17,7 +20,13 @@ public class ProdutoResource {
     @Autowired
     private ProdutoRepository produtoRepository;
 
-    @GetMapping
+    @ApiOperation(value = "Retorna todos os produtos")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Retorna a lista de pessoa"),
+//            @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+//            @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+//    })
+    @GetMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public List<Produto> buscarTodosProdutos() {
         return produtoRepository.findAll();
     }

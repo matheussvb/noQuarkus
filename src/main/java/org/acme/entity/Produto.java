@@ -1,5 +1,6 @@
 package org.acme.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
@@ -13,8 +14,11 @@ import java.util.Date;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(value = "Id do produto")
     public Long id;
+    @ApiModelProperty(value = "Nome do produto")
     public String nome;
+
     public BigDecimal valor;
 
     @UpdateTimestamp
